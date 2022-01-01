@@ -49,3 +49,32 @@ $routes->get('/', 'Home::index');
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+
+// custom routes
+
+$routes->get('/', 'SignupController::index');
+$routes->get('/signup', 'SignupController::index');
+$routes->get('/signin', 'SigninController::index');
+$routes->get('/manageAlbum', 'albumController::index',['filter' => 'authGuard']);
+$routes->put('/manageAlbum/approval/(:num)', 'albumController::index',['filter' => 'authGuard'],
+'albumController::approval/$1');
+
+$routes->get('/artist-list', 'ProfileController::index',['filter' => 'authGuard']);
+$routes->get('/successPage', 'successController::index',['filter' => 'authGuard']);
+$routes->get('/manageAlbum/delete/(:num)', 'albumController::index',['filter' => 'authGuard'],
+'albumController::delete/$1');
+
+$routes->delete('/manageAlbum/delete-method/(:num)', 'albumController::index',['filter' => 'authGuard'],
+'albumController::delete/$1');
+
+
+
+
+
+
+
+
+
+
+
